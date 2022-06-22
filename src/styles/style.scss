@@ -1,0 +1,205 @@
+//----reset----------
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+button, textarea, input {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+//--------------------------
+
+body {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+  width: 100%;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background-color: aquamarine;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks__wrapper {
+  padding: 1.5rem;
+  height: 40rem;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 3%;
+}
+
+.tasks__wrapper > div {
+  position: relative;
+  width: 32%;
+  padding: 1rem;
+  background-color: rgb(214, 250, 255);
+  border-radius: 1rem;
+}
+
+.group__header, .task__body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.group__title {
+  margin: 0 1rem 1rem;
+}
+
+.group__task {
+  padding: 1rem;
+  padding-right: 0;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.task__body {
+  height: 96px;
+}
+
+.task__body + .task__body {
+  height: calc(96px + 1rem);
+  border-top: 1px solid #000;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.task__btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.task__btn {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 30% 0 0 30%;
+  background-color: aquamarine;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.modal__wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 40%;
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.show {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.btns-group {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.modal__btn {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: aquamarine;
+}
+
+.modal__title {
+  background-color: aquamarine;
+  color: #fff;
+  max-width: 12rem;
+  max-height: 2.5rem;
+  &::placeholder {
+    color: #fff;
+  }
+}
+
+#close {
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+}
+
+textarea {
+  padding: 0.5rem;
+  resize: none;
+  outline: none;
+  border: 2px solid aquamarine;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+  color: #fff;
+}
+
+.group__btn {
+  font-size: 1.5rem;
+  font-weight: 900;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 0 0 1rem 1rem;
+  background-color: aquamarine;
+}
+
+.task__title {
+  font-size: 1.2rem;
+}
+
+.task__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button:hover {
+  background-color: rgb(253, 148, 185);
+}
