@@ -4,8 +4,13 @@ const format = (time) => (time > 9) ? time : '0' + time
 
 let time = $('.header__time')
 let date = new Date;
-time.textContent = `${format(date.getHours())}:${format(date.getMinutes())}`
+setInterval(() => {
+  let date = new Date;
+  time.textContent = `${format(date.getHours())}:${format(date.getMinutes())}`, 1000
+})
 
+const main = $('main')
+const header = $('header')
 const groups = $$('.group__body')
 const taskForm = $('#taskForm')
 const counters = $$('.group__counter')
@@ -33,6 +38,8 @@ confirmModalBtn.addEventListener('click', handleConfirmForm)
 function toggleModal () {
   const modalWindow = $('#modal-add')
   modalWindow.classList.toggle('show')
+  main.classList.toggle('blur')
+  header.classList.toggle('blur')
 }
 
 function switchModalBnts () {
@@ -48,7 +55,9 @@ const delAllBtn = $('#del-all')
 
 addBtn.addEventListener('click', () => {
   taskForm.reset()
-  toggleModal()
+  if (data.todo.length < 5) {
+    toggleModal()
+  } else alert('Количество задач превысило лимит. Выполните существующие задачи.')
 })
 
 completeAllBtn.addEventListener('click', () => {
@@ -78,10 +87,11 @@ groupDone.addEventListener('click', handleDoneBtnsAction)
 
 function moveTodo (todo, group) {
   const index = data[todo.status].indexOf(todo)
-  data[group].push(todo)
-  data[todo.status].splice(index, 1)
-  todo.status = group
-
+  if (data[group].length < 5) {
+    data[group].push(todo)
+    data[todo.status].splice(index, 1)
+    todo.status = group
+  } else alert(`Количество задач в группе ${group} превысило лимит`)
   render()
 }
 
@@ -112,18 +122,28 @@ function handleChangeTodo (e, index) {
 
 function handleConfirmForm (e) {
   e.preventDefault()
-  const task = new Todo(taskForm.title.value, taskForm.description.value)
-  data.todo.push(task)
-  toggleModal()
-  taskForm.reset()
-  render()
+  let title = taskForm.title.value
+  let description = taskForm.description.value
+  if (title || description) {
+    if (description && !title) {
+      title = description
+      description = ''
+    }
+    const task = new Todo(title, description)
+    data.todo.push(task)
+    toggleModal()
+    taskForm.reset()
+    render()
+  } else {
+    alert('Одно из полей не может быть пустым')
+  }
 }
 
 //-------------group-btns-handlers--------------
 
 function handleTodoBtnsAction (e) {
   const target = e.target
-  if (target.closest('button') && target.closest('button').hasAttribute('id')) {
+  if (target.closest('button').hasAttribute('id')) {
     const action = target.closest('button').id
     const currentId = target.closest('.task__body').id
     const todo = data.todo.find(task => task.id == currentId)
@@ -211,12 +231,13 @@ function Todo (title, description) {
 //------templates----------
 
 function taskTemplate (title, description, group, id) {
+  const time = `${format(date.getHours())}:${format(date.getMinutes())}`
   return `
   <div class="task__body" id="${id}">
     <div class="task__info">
       <h5 class="task__title">${title}</h5>
       <p class="task__text">${description}</p>
-      <div class="task__user">Liz <span class="task__date">23.04</sp></div>
+      <div class="task__user">Liz <span class="task__date">${time}</span></div>
     </div>
     ${btnsTemplate(group)}
   </div>`

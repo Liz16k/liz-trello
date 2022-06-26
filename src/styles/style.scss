@@ -1,3 +1,13 @@
+//---variables----
+
+$main-color: rgb(122, 159, 234);
+$snd-color: rgb(168, 245, 255);
+$third-color: rgb(158, 255, 219);
+$grey: rgb(50, 50, 50);
+$shadow: rgba(91, 39, 110, 0.516);
+$accent: rgb(255, 95, 127);
+
+
 //----reset----------
 *, *::after, *::before {
   margin: 0;
@@ -23,24 +33,35 @@ body {
   width: 100%;
   max-width: 90rem;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .header {
+  padding: 1rem;
   width: 100%;
   padding: 1.5rem;
-  margin-bottom: 1rem;
-  background-color: aquamarine;
+  margin-bottom: 2rem;
+  background-color: $grey;
+  color: #fff;
   border-radius: 1rem;
   display: flex;
   justify-content: space-between;
 }
 
+.header__time {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
 .tasks__wrapper {
   padding: 1.5rem;
   height: 40rem;
-  border: 1px solid #000;
+  border: 2px solid $grey;
   border-radius: 1rem;
   display: flex;
   justify-content: space-between;
@@ -51,9 +72,14 @@ body {
   position: relative;
   width: 32%;
   padding: 1rem;
-  background-color: rgb(214, 250, 255);
   border-radius: 1rem;
 }
+
+.task__group-todo {background-color: $main-color;}
+.task__group-progress {background-color: $snd-color;}
+.task__group-done {background-color: $third-color;}
+
+.task__title {text-transform: uppercase;}
 
 .group__header, .task__body {
   display: flex;
@@ -71,12 +97,14 @@ body {
   border-radius: 1rem;
 }
 
+
+
 .task__body {
-  height: 96px;
+  height: 5.5rem;
 }
 
 .task__body + .task__body {
-  height: calc(96px + 1rem);
+  height: 6rem;
   border-top: 1px solid #000;
   padding-top: 1rem;
   margin-top: 1rem;
@@ -93,9 +121,13 @@ body {
   height: 2rem;
   border: none;
   border-radius: 30% 0 0 30%;
-  background-color: aquamarine;
+  background-color: $grey;
   flex-shrink: 0;
   align-self: center;
+}
+
+.task__user {
+  color: rgb(151, 151, 151);
 }
 
 .modal {
@@ -114,24 +146,30 @@ body {
 
 .modal__wrap {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  width: 40%;
-  height: 14rem;
+  width: 30%;
+  height: 12rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #000;
+  gap: 1rem;
+  border: 1px solid black;
   border-radius: 1rem;
   padding: 1rem;
+  transition: all 5ms;
 }
 
 .show {
   z-index: 1;
   opacity: 1;
   visibility: visible;
+}
+
+.blur {
+  filter: blur(5px);
 }
 
 .btns-group {
@@ -144,14 +182,13 @@ body {
   padding: 0.5rem 2rem;
   border: none;
   border-radius: 1rem;
-  background-color: aquamarine;
+  background-color:  $grey;
 }
 
 .modal__title {
-  background-color: aquamarine;
+  background-color:  $grey;
   color: #fff;
-  max-width: 12rem;
-  max-height: 2.5rem;
+  font-size: 1.5rem;
   &::placeholder {
     color: #fff;
   }
@@ -163,11 +200,12 @@ body {
   height: 3rem;
 }
 
-textarea {
-  padding: 0.5rem;
+input {
+  padding: 1rem;
+  text-align: center;
   resize: none;
   outline: none;
-  border: 2px solid aquamarine;
+  border: 2px solid  $grey;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -175,6 +213,13 @@ textarea {
 button {
   cursor: pointer;
   color: #fff;
+  &:hover {
+    background-color: $accent;
+  }
+}
+
+.group__btn:hover {
+  background-color: $shadow;
 }
 
 .group__btn {
@@ -187,10 +232,12 @@ button {
   padding: 1rem;
   border: none;
   border-radius: 0 0 1rem 1rem;
-  background-color: aquamarine;
+  background-color:  $grey;
 }
 
-.task__title {
+.task__title, .group__counter {
+  padding-right: 1rem;
+  font-weight: 900;
   font-size: 1.2rem;
 }
 
@@ -200,6 +247,20 @@ button {
   justify-content: space-between;
 }
 
-button:hover {
-  background-color: rgb(253, 148, 185);
+.group__body{
+  max-height: 29rem;
+  overflow-y: auto;
+}
+
+.group__body::-webkit-scrollbar {
+  width: 0.8rem;               /* width of the entire scrollbar */
+}
+
+.group__body::-webkit-scrollbar-thumb {
+  margin-left: 0.5rem;
+  border-radius: 20px;
+  border: 1px solid $grey;
+  &:hover {
+    background-color: $accent;
+  }
 }
