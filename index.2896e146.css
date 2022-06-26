@@ -1,0 +1,264 @@
+*, :after, :before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+button, textarea, input {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 3rem;
+  font-family: Courier New, Courier, monospace;
+}
+
+.header {
+  width: 100%;
+  color: #fff;
+  background-color: #323232;
+  border-radius: 1rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.header__time {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: .5rem;
+  padding: .3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.tasks__wrapper {
+  height: 40rem;
+  border: 2px solid #323232;
+  border-radius: 1rem;
+  justify-content: space-between;
+  gap: 3%;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.tasks__wrapper > div {
+  width: 32%;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.task__group-todo {
+  background-color: #7a9fea;
+}
+
+.task__group-progress {
+  background-color: #a8f5ff;
+}
+
+.task__group-done {
+  background-color: #9effdb;
+}
+
+.task__title {
+  text-transform: uppercase;
+}
+
+.group__header, .task__body {
+  justify-content: space-between;
+  display: flex;
+}
+
+.group__title {
+  margin: 0 1rem 1rem;
+}
+
+.group__task {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem 0 1rem 1rem;
+}
+
+.task__body {
+  height: 5.5rem;
+}
+
+.task__body + .task__body {
+  height: 6rem;
+  border-top: 1px solid #000;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.task__btns {
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+
+.task__btn {
+  width: 2rem;
+  height: 2rem;
+  background-color: #323232;
+  border: none;
+  border-radius: 30% 0 0 30%;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.task__user {
+  color: #979797;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.modal__wrap {
+  width: 30%;
+  height: 12rem;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  transition: all 5ms;
+  display: flex;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.blur {
+  filter: blur(5px);
+}
+
+.btns-group {
+  justify-content: center;
+  gap: 3rem;
+  display: flex;
+}
+
+.modal__btn {
+  background-color: #323232;
+  border: none;
+  border-radius: 1rem;
+  padding: .5rem 2rem;
+}
+
+.modal__title {
+  color: #fff;
+  background-color: #323232;
+  font-size: 1.5rem;
+}
+
+.modal__title::placeholder {
+  color: #fff;
+}
+
+#close {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+}
+
+input {
+  text-align: center;
+  resize: none;
+  border: 2px solid #323232;
+  border-radius: .5rem;
+  outline: none;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #ff5f7f;
+}
+
+.group__btn:hover {
+  background-color: #5b276e84;
+}
+
+.group__btn {
+  width: 100%;
+  background-color: #323232;
+  border: none;
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.task__title, .group__counter {
+  padding-right: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.task__info {
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+.group__body {
+  max-height: 29rem;
+  overflow-y: auto;
+}
+
+.group__body::-webkit-scrollbar {
+  width: .8rem;
+}
+
+.group__body::-webkit-scrollbar-thumb {
+  border: 1px solid #323232;
+  border-radius: 20px;
+  margin-left: .5rem;
+}
+
+.group__body::-webkit-scrollbar-thumb:hover {
+  background-color: #ff5f7f;
+}
+
+/*# sourceMappingURL=index.2896e146.css.map */
